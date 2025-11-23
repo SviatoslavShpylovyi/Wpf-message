@@ -1,0 +1,71 @@
+﻿<Window x:Class="ServerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServerApp"
+        mc:Ignorable="d"  
+        Title="Group Chat Server" Height="450" Width="800"
+        PreviewKeyDown="ShiftEneterd" Closing="Window_Closing">
+    <Window.Resources>
+        <DataTemplate x:Key="LogMessage">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="{Binding Time}"></Label>
+                <Label Content="{Binding Message}"></Label>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Connection info" Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=" Auto"/>
+                    <RowDefinition Height=" Auto"/>
+                    <RowDefinition Height=" Auto"/>
+                    <RowDefinition Height=" Auto"/>
+                    <RowDefinition Height=" Auto"/>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=" *"/>
+                    <ColumnDefinition Width=" *"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0">Username:</Label>
+                <Label Grid.Row="0" Grid.Column="1">Password:</Label>
+                <Label Grid.Row="2" Grid.Column="0">Address:</Label>
+                <Label Grid.Row="2" Grid.Column="1">Port:</Label>
+                <TextBox Name ="NameField" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" ></TextBox>
+                <TextBox Name ="Address" Grid.Row="3" Grid.Column="0" Margin="5,5,5,5"  ></TextBox>
+                <TextBox Name ="Port" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5"  ></TextBox>
+                <Button Name="Baton" Grid.Column="1" Grid.Row="4" Width="80" Height="20" Click="StartButton">Start</Button>
+                <PasswordBox Name ="Password"  Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" ></PasswordBox>
+
+
+            </Grid>
+        </GroupBox>
+        <ListView Name ="Logs"  Grid.Row="1" Grid.Column="0"/>
+        <TextBox Name="AdminText" Grid.Row="2" Grid.Column="0" Width=" 300" HorizontalAlignment="Left" TextWrapping="Wrap"></TextBox>
+        <Button  Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Right" Click="SendAdminMessage"> Send</Button>
+        <Label  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center">Logged Users</Label>
+        <ListView Name="ClientList" ItemsSource="{Binding Clients}" Grid.Row="1" Grid.Column="1"/>
+        <Button Grid.Column="1" Grid.Row="2" Click="Kick">Kick</Button>
+    </Grid>
+        
+        
+</Window>
